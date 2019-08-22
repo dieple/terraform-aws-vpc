@@ -575,7 +575,7 @@ resource "aws_eip" "nat" {
   vpc = true
 
 //  tags = "${merge(map("Name", format("%s-%s", var.name, element(var.azs, (var.single_nat_gateway ? 0 : count.index)))), var.tags, var.nat_eip_tags)}"
-  tags = "${merge(var.tags, map("Name", format("%s-%s", var.name, substr(element(var.azs, (var.single_nat_gateway ? 0 : count.index)),-1,1))))}"
+  tags = "${merge(var.tags, map("Name", format("%s-eip-%s", var.name, substr(element(var.azs, (var.single_nat_gateway ? 0 : count.index)),-1,1))))}"
 }
 
 resource "aws_nat_gateway" "this" {
