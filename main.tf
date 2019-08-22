@@ -68,7 +68,7 @@ resource "aws_internet_gateway" "this" {
   vpc_id = "${local.vpc_id}"
 
 //  tags = "${merge(map("Name", format("%s", var.name)), var.tags, var.igw_tags)}"
-  tags = "${merge(var.tags, map("Name", format("%s", var.name)))}"
+  tags = "${merge(var.tags, map("Name", format("%s-igw", var.name)))}"
 }
 
 ################
