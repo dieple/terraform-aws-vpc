@@ -585,7 +585,7 @@ resource "aws_nat_gateway" "this" {
   subnet_id     = "${element(aws_subnet.public.*.id, (var.single_nat_gateway ? 0 : count.index))}"
 
 //  tags = "${merge(map("Name", format("%s-%s", var.name, element(var.azs, (var.single_nat_gateway ? 0 : count.index)))), var.tags, var.nat_gateway_tags)}"
-  tags = "${merge(var.tags, map("Name", format("%s-%s", var.name, substr(element(var.azs, (var.single_nat_gateway ? 0 : count.index)),-1,1))))}"
+  tags = "${merge(var.tags, map("Name", format("%s-natgw-%s", var.name, substr(element(var.azs, (var.single_nat_gateway ? 0 : count.index)),-1,1))))}"
 
   depends_on = ["aws_internet_gateway.this"]
 }
